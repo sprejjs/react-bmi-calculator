@@ -30,7 +30,7 @@ FormInput.props = {
   title: PropTypes.string.isRequired,
   value: PropTypes.string,
   onChange: PropTypes.func.isRequired,
-  type: PropTypes.oneOf('text', 'password', 'number')
+  type: PropTypes.oneOf(['text', 'password', 'number'])
 }
 
 export default FormInput

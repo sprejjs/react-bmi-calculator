@@ -1,12 +1,29 @@
-import React, {Fragment, useState} from 'react'
+import React, {Fragment, useEffect, useState} from 'react'
 import FormInput from './FormInput';
 
 const BmiCalculator = () => {
   const [heightUnit, setHeightUnit] = useState('cm');
   const [weightUnit, setWeightUnit] = useState('kg');
-  const [unit, setUnit] = useState('');
+  const [unit, setUnit] = useState('Metric');
+  const [count, setCount] = useState({
+    heightCount: '0',
+    inchesCount: '0',
+    weightCount: '0'
+  });
 
-  const onChangeInput = (input) => {}
+  const { heightCount, inchesCount, weightCount } = count;
+
+  useEffect(() => {
+  }, [])
+
+  const onChangeInput = event => {
+    const { name, value } = event.target;
+
+    setCount(prevState => ({
+      ...prevState,
+      [name]: value
+    }))
+  }
   const onSelectTag = event => {
     setUnit(event.target.value)
 
@@ -15,7 +32,7 @@ const BmiCalculator = () => {
       setWeightUnit('kg')
     } else {
       setHeightUnit('ft')
-      setWeightUnit('pt')
+      setWeightUnit('lbs')
     }
   }
 
@@ -33,7 +50,7 @@ const BmiCalculator = () => {
                 className="form-control form-control-sm"
               >
                 <option value="Metric">Metric</option>
-                <option value="Imperial">Imeprial</option>
+                <option value="Imperial">Imperial</option>
               </select>
             </div>
           </div>
@@ -41,7 +58,7 @@ const BmiCalculator = () => {
             type="text"
             name="heightCount"
             title={`Height (${heightUnit})`}
-            value=""
+            value={heightCount}
             onChange={onChangeInput}
           />
           {
@@ -50,7 +67,7 @@ const BmiCalculator = () => {
                 type="text"
                 name="inchesCount"
                 title={` (in)`}
-                value=""
+                value={inchesCount}
                 onChange={onChangeInput}
               /> : ''
           }
@@ -58,7 +75,7 @@ const BmiCalculator = () => {
             type="text"
             name="weightCount"
             title={`Weight (${weightUnit})`}
-            value=""
+            value={weightCount}
             onChange={onChangeInput}
           />
         </div>
