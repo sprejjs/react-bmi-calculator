@@ -1,7 +1,9 @@
-import React, {Fragment} from 'react';
+import React, {Fragment, useState} from 'react';
 import BmiCalculator from './BmiCalculator';
 
 const Bmi = () => {
+  const [bmi, setBmi] = useState("0");
+
   return (
     <Fragment>
       <div className="calculator">
@@ -9,7 +11,7 @@ const Bmi = () => {
         <div className="bmi-result-container">
           <div className="bmi-result">
             <div className="bmi-result-number">
-              Body Mass Index (BMI) = 23
+              Body Mass Index (BMI) = {bmi}
             </div>
             <div className={`bmi-category`}>
               Underweight
@@ -17,7 +19,9 @@ const Bmi = () => {
           </div>
         </div>
 
-        <BmiCalculator />
+        <BmiCalculator
+          bmi = {setBmi}
+        />
       </div>
     </Fragment>
   )
